@@ -1,4 +1,4 @@
-document.querySelector('#State1').addEventListener('click', action)
+document.querySelector('#states').addEventListener('click', action)
 
 function action(){
     alert("Heyo")
