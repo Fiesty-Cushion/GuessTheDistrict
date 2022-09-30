@@ -46,8 +46,8 @@ let allDistricts = [
     "Mugu",
     "Mustang",
     "Myagdi",
-    "Nawalparasi East",
-    "Nawalparasi West",
+    "NawalparasiEast",
+    "NawalparasiWest",
     "Nuwakot",
     "Okhaldhunga",
     "Palpa",
@@ -59,8 +59,8 @@ let allDistricts = [
     "Rasuwa",
     "Rautahat",
     "Rolpa",
-    "Rukum East",
-    "Rukum West",
+    "RukumEast",
+    "RukumWest",
     "Rupandehi",
     "Salyan",
     "Sankhuwasabha",
@@ -79,19 +79,28 @@ let allDistricts = [
     "Udayapur"
 ]
 
-let someDistricts = allDistricts
+let remDistricts = allDistricts
 
 
-function randomDistrict(districts){
-    let randint = Math.random()
-    index = randint * districts.length
-    element = Math.floor(index)
-    return (districts[element])
+let randint = Math.random()
+index = randint * remDistricts.length
+element = Math.floor(index)
+let botChoice = remDistricts[element]
+document.querySelector('h1').innerText = botChoice
+
+const districts = document.getElementsByTagName("polygon");
+
+const districtSelected = e => { 
+    let userChoice = e.target.id
+    if(userChoice == botChoice){
+        console.log("You won")
+    }
+    else{
+        alert("Looser")
+    }
 }
 
+for (let polygon of districts) {
+  polygon.addEventListener("click", districtSelected);
 
-function displayDistrict(){
-    document.querySelector('h1').innerText = randomDistrict(someDistricts)
 }
-
-displayDistrict()
