@@ -81,26 +81,50 @@ let allDistricts = [
 
 let remDistricts = allDistricts
 
+let streak = 0, botChoice
 
-let randint = Math.random()
-index = randint * remDistricts.length
-element = Math.floor(index)
-let botChoice = remDistricts[element]
-document.querySelector('h1').innerText = botChoice
+function randomDistrict(){
+    let randint = Math.random()
+    index = randint * remDistricts.length
+    element = Math.floor(index)
+    botChoice = remDistricts[element]
+
+    document.querySelector('h1').innerText = botChoice
+}
+
+randomDistrict()
+
+function check(userChoice){
+    
+    if(userChoice == botChoice){
+        streak++
+        console.log("you guessed correct")
+        console.log(botChoice)
+        randomDistrict()
+
+    }
+    else{
+        console.log("You guessed incorrect")
+        console.log(botChoice)
+        randomDistrict()
+    }
+}
 
 const districts = document.getElementsByTagName("polygon");
 
-const districtSelected = e => { 
+let districtSelected = e => { 
     let userChoice = e.target.id
-    if(userChoice == botChoice){
-        console.log("You won")
-    }
-    else{
-        alert("Looser")
-    }
+    check(userChoice)
+
+                                                          
 }
+
+
 
 for (let polygon of districts) {
-  polygon.addEventListener("click", districtSelected);
+    polygon.addEventListener("click", districtSelected);
+  
+  }
 
-}
+  
+
