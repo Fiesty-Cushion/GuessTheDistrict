@@ -19,7 +19,7 @@ let allDistricts = [
     "Dhading",
     "Dhankuta",
     "Dhanusa",
-    "Dholkha",
+    "Dolakha",
     "Dolpa",
     "Doti",
     "Gorkha",
@@ -81,7 +81,7 @@ let allDistricts = [
 
 let remDistricts = allDistricts
 
-let streak = 0, botChoice
+let streak = 0, botChoice, element
 
 function randomDistrict(){
     let randint = Math.random()
@@ -92,20 +92,24 @@ function randomDistrict(){
     document.querySelector('h1').innerText = botChoice
 }
 
-randomDistrict()
+randomDistrict()             
 
 function check(userChoice){
     
-    if(userChoice == botChoice){
+    if((userChoice == botChoice) && (streak != 77)){
         streak++
-        console.log("you guessed correct")
-        console.log(botChoice)
-        randomDistrict()
+        document.getElementById(userChoice).style.fill = "#50C878"
+        remDistricts.splice(element, 1)
 
+        randomDistrict()
+    }
+    else if( streak == 77){
+        alert("game Over")
     }
     else{
-        console.log("You guessed incorrect")
-        console.log(botChoice)
+        document.getElementById(userChoice).style.fill =  "	#D2042D"
+
+        remDistricts.splice(element, 1)
         randomDistrict()
     }
 }
@@ -125,6 +129,3 @@ for (let polygon of districts) {
     polygon.addEventListener("click", districtSelected);
   
   }
-
-  
-
