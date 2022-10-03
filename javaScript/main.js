@@ -96,22 +96,21 @@ randomDistrict()
 
 function check(userChoice){
     
-    if((userChoice == botChoice) && (streak != 77)){
+    if(userChoice == botChoice){
         streak++
+        
         document.getElementById(userChoice).style.fill = "#50C878"
         remDistricts.splice(element, 1)
         document.getElementById(userChoice).removeEventListener("click", districtSelected)
 
         randomDistrict()
     }
-    else if( streak == 77){
-        alert("game Over")
-    }
+    
     else{
         document.getElementById(userChoice).style.fill =  "	#D2042D"
-
         remDistricts.splice(element, 1)
         document.getElementById(userChoice).removeEventListener("click", districtSelected)
+
         randomDistrict()
     }
 }
@@ -120,14 +119,12 @@ const districts = document.getElementsByTagName("polygon");
 
 let districtSelected = e => { 
     let userChoice = e.target.id
+    
     check(userChoice)
-
-                                                          
+                                                              
 }
-
-
 
 for (let polygon of districts) {
     polygon.addEventListener("click", districtSelected);
-  
-  }
+
+}
