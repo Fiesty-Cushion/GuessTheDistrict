@@ -73,7 +73,7 @@ let allDistricts = [
     "Sunsari",
     "Surkhet",
     "Syangja",
-    "Tanahu",
+    "Tanahun",
     "Taplejung",
     "Terhathum",
     "Udayapur"
@@ -100,6 +100,7 @@ function check(userChoice){
         streak++
         document.getElementById(userChoice).style.fill = "#50C878"
         remDistricts.splice(element, 1)
+        document.getElementById(userChoice).removeEventListener("click", districtSelected)
 
         randomDistrict()
     }
@@ -110,6 +111,7 @@ function check(userChoice){
         document.getElementById(userChoice).style.fill =  "	#D2042D"
 
         remDistricts.splice(element, 1)
+        document.getElementById(userChoice).removeEventListener("click", districtSelected)
         randomDistrict()
     }
 }
