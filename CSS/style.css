@@ -29,7 +29,7 @@ body {
     right: 45%;
 }
 
-#streak{
+#score{
     display: inline-block;
     margin-right: 3rem;
     position: absolute;

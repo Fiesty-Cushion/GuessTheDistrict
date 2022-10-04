@@ -81,7 +81,7 @@ let allDistricts = [
 
 let remDistricts = allDistricts
 
-let streak = 0, botChoice, element
+let score = 0, botChoice, element
 let highScore = localStorage.getItem('highScore')
 checkHighScore()
 
@@ -99,9 +99,9 @@ randomDistrict()
 function check(userChoice){
     
     if(userChoice == botChoice){
-        streak++
+        score++
         checkHighScore()
-        document.querySelector('#streak').innerHTML = `Streak : ${streak}`
+        document.querySelector('#score').innerHTML = `Score : ${score}`
         
         document.getElementById(userChoice).style.fill = "#50C878"
         remDistricts.splice(element, 1)
@@ -144,12 +144,12 @@ function playAgain(){
 function checkHighScore(){
 
     if (!localStorage.getItem('highScore')){
-        localStorage.setItem('highScore', streak)
-        document.querySelector('#pb').innerHTML = `High Score : ${streak}`
+        localStorage.setItem('highScore', score)
+        document.querySelector('#pb').innerHTML = `High Score : ${score}`
     }
-    else if(highScore <= streak){
-        highScore = streak
-        localStorage.setItem('highScore', streak)
+    else if(highScore <= score){
+        highScore = score
+        localStorage.setItem('highScore', score)
     }
     document.querySelector('#pb').innerHTML = `High Score : ${highScore}`
     
