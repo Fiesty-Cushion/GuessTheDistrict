@@ -2,20 +2,22 @@
 <html lang="en">
 	<head>
     	<meta charset="utf-8">
-    	<meta name="description" content="This is where your description goes">
-    	<meta name="keywords" content="one, two, three">
+    	<meta name="description" content="A fun game where you test your geographical knowledge.">
 
 		<title>Guess the District</title>
-
-		<!-- external CSS link -->
 		
-		<link rel="stylesheet" href="/CSS/style.css">
+		<link rel="stylesheet" href="CSS/style.css">
 	</head>
 	<body>
-
-		<h1></h1>
+		<h1 id="welcome">How Many Districts Do You Know?</h1>
 		
+		<div class="infoBar">
+			<h2 id="display"></h2>
+			<h2 id="pb">High Score : 0</h2>
+			<h2 id="streak">Streak : 0</h2>
+		</div>
 		
+		<div id="svgMap">
 		<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 1086.4 543.9" style="enable-background:new 0 0 1086.4 543.9;" xml:space="preserve">
 			<style type="text/css">
@@ -6489,8 +6491,11 @@
 			</g>
 			
 		</svg>
+		</div>
+
+		<button class="button">Play Again</button>
         
 		
-		<script src="/javaScript/main.js"></script>
+		<script src="javaScript/main.js"></script>
 	</body>
 </html>
