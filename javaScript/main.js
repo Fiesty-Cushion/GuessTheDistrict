@@ -81,28 +81,40 @@ let allDistricts = [
 
 let remDistricts = allDistricts
 let storesRandomDistricts = []
+let pointerRandomDistricts = 0
+let answeredCorrectly = ["garby"]
+let answeredIncorrectly = ["garby"]
 
-let streak = 0, score = 0, botChoice, element, indexSRD = 0
+let streak = 0, score = 0, botChoice, element, indexSRD = 0, prevChoice, nextChoice
 let highScore = localStorage.getItem('highScore')
 checkHighScore()
 
 function randomDistrict(){
+    document.querySelector("#districtChoice").style.color = "white"
+    
     let randint = Math.random()
     index = randint * remDistricts.length
     element = Math.floor(index)
     botChoice = remDistricts[element]
 
     storesRandomDistricts[indexSRD] = botChoice
+   
     indexSRD++
+    pointerRandomDistricts = indexSRD
+    
 
-    document.querySelector("#display").innerHTML = `Where is :  ${botChoice}?`
+    document.querySelector("#districtChoice").innerHTML = `${botChoice}?`
+    document.getElementById("districtChoice").style.color = "white"
+
 }
 
 randomDistrict()             
 
 function check(userChoice){
     
-    if(userChoice == botChoice){
+    if(userChoice == storesRandomDistricts[pointerRandomDistricts-1]){
+        answeredCorrectly.push(userChoice)
+        
         streak++
         score++
         checkHighScore()
@@ -110,23 +122,37 @@ function check(userChoice){
         
         document.getElementById(userChoice).style.fill = "#50C878"
         remDistricts.splice(element, 1)
+
         document.getElementById(userChoice).removeEventListener("click", districtSelected)
 
-        randomDistrict()
+        if(answeredCorrectly.includes(userChoice)){
+            document.querySelector("#districtChoice").style.color = "#76ff7a"
+        }
+
+        if((storesRandomDistricts.length != 77) && (pointerRandomDistricts == indexSRD)){
+            randomDistrict()
+        }
         
         if(streak == 77){
             finalScore()
         }
 
+        
+
     }
     
     else{
+        answeredIncorrectly.push(storesRandomDistricts[pointerRandomDistricts-1])
         streak++
+        document.querySelector("#districtChoice").style.color = "#f22952"
+
         document.getElementById(userChoice).style.fill =  "	#D2042D"
         remDistricts.splice(element, 1)
         document.getElementById(userChoice).removeEventListener("click", districtSelected)
 
-        randomDistrict()
+        if((storesRandomDistricts.length != 77) && (pointerRandomDistricts == indexSRD)){
+            randomDistrict()
+        }
 
         if(streak == 77){
             finalScore()
@@ -181,11 +207,56 @@ function playAgain(){
     
 }
 
+
 function previousDistrict(){
+    document.querySelector("#districtChoice").style.color = "white"
+    if(pointerRandomDistricts > 1){
+        prevChoice = storesRandomDistricts[pointerRandomDistricts - 2]
+
+        document.querySelector("#districtChoice").innerHTML = `${prevChoice}?`
+        pointerRandomDistricts--
+
+        if(answeredCorrectly.includes(prevChoice)){
+            document.querySelector("#districtChoice").style.color = "#76ff7a"
+        }
+        else if(answeredIncorrectly.includes(prevChoice)){
+            document.querySelector("#districtChoice").style.color = "#f22952"
+        }
+
+        document.getElementById('counter').innerText = `(${pointerRandomDistricts}/77)`
+    }
+    
 
 }
 
+
 function nextDistrict(){
+    document.querySelector("#districtChoice").style.color = "white"
+
+    if(pointerRandomDistricts < 77){
+
+        if(pointerRandomDistricts == indexSRD){  
+            remDistricts.splice(element, 1)
+            randomDistrict()
+        }
+
+        else{
+            nextChoice = storesRandomDistricts[pointerRandomDistricts]
+            document.querySelector("#districtChoice").innerHTML = `${nextChoice}?`
+            pointerRandomDistricts++
+
+            if(answeredCorrectly.includes(nextChoice)){
+                document.querySelector("#districtChoice").style.color = "#76ff7a"
+            }
+            else if(answeredIncorrectly.includes(nextChoice)){
+                
+                document.querySelector("#districtChoice").style.color = "#f22952"
+            }
+
+        }
+
+        document.getElementById('counter').innerText = `(${pointerRandomDistricts}/77)`
+    }  
 
 }
 
