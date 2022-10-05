@@ -18,15 +18,16 @@ body {
 }
 
 #display {
-    margin-left: 3rem;
     display: inline-block;
+    margin-left: 2rem;
     
 }
 
 #pb{
     display: inline-block;
     position: absolute;
-    right: 45%;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 #score{
@@ -49,8 +50,13 @@ svg {
     margin-left: 15rem;
 }
 
+
 .button {
-    background-color: #4CAF50; /* Green */
+    display : inline-block;
+  }
+
+.button {
+    background-color: #4CAF50; 
     border: none;
     color: white;
     padding: 16px 32px;
@@ -62,13 +68,12 @@ svg {
     margin: 4px 2px;
     transition-duration: 0.4s;
     cursor: pointer;
+   
   }
   
   .button {
     background-color: #4CAF50; 
     color: white; 
-    border: 2px solid #4CAF50;
-    margin-left: 47%;
     border-radius: 7px;
   }
   
@@ -77,3 +82,21 @@ svg {
     color: black;
   }
   
+  #prev {
+    position: absolute;
+    left: 7%;
+    transform: translateX(-50%);
+
+  }
+
+  #again {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  #next {
+    position: absolute;
+    left: 93%;
+    transform: translateX(-50%);
+  }
