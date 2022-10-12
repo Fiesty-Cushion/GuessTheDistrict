@@ -119,6 +119,7 @@ function check(userChoice){
         score++
         checkHighScore()
         document.querySelector('#score').innerHTML = `Score : ${score}`
+        document.getElementById('counter').innerText = `(${pointerRandomDistricts + 1}/77)`
         
         document.getElementById(userChoice).style.fill = "#50C878"
         remDistricts.splice(element, 1)
@@ -259,5 +260,3 @@ function nextDistrict(){
     }  
 
 }
-
-
