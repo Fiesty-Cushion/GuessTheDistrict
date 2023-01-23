@@ -97,6 +97,7 @@ let highScore = localStorage.getItem("highScore");
 checkHighScore();
 
 function randomDistrict() {
+  answeredAlready = false;
   document.querySelector("#districtChoice").style.color = "white";
 
   let randint = Math.random();
@@ -119,7 +120,7 @@ function check(userChoice) {
   if (!answeredAlready) {
     if (userChoice == storesRandomDistricts[pointerRandomDistricts - 1]) {
       answeredCorrectly.push(userChoice);
-
+          
       streak++;
       score++;
       checkHighScore();
@@ -155,11 +156,12 @@ function check(userChoice) {
       );
       streak++;
       document.querySelector("#districtChoice").style.color = "#f22952";
+      document.getElementById(storesRandomDistricts[pointerRandomDistricts - 1]).style.fill = "	#D2042D";
 
-      document.getElementById(userChoice).style.fill = "	#D2042D";
-      remDistricts.splice(element, 1);
+      let remElement = remDistricts.indexOf(storesRandomDistricts[pointerRandomDistricts - 1])
+      remDistricts.splice(remElement, 1);
       document
-        .getElementById(userChoice)
+        .getElementById(storesRandomDistricts[pointerRandomDistricts - 1])
         .removeEventListener("click", districtSelected);
 
       if (
@@ -251,6 +253,8 @@ function nextDistrict() {
       } else if (answeredIncorrectly.includes(nextChoice)) {
         document.querySelector("#districtChoice").style.color = "#f22952";
         answeredAlready = true;
+      }else{
+        answeredAlready = false;
       }
     }
 
