@@ -1,4 +1,4 @@
-# GuessWhichDistrict
+# GuessTheDistrict
 As the name suggests, you just guess the correct districts and gain points.  
 
 ## Description
